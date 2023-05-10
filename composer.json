@@ -1,0 +1,37 @@
+{
+    "name": "ianm/url-cron",
+    "description": "Expose the Flarum scheduler to a URL for use on shared hosting envs",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": "^1.6.0"
+    },
+    "authors": [
+        {
+            "name": "IanM",
+            "email": "ian@flarum.one",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IanM\\UrlCron\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "URL Cron",
+            "category": "feature",
+            "icon": {
+                "name": "far fa-stopwatch",
+                "color": "#fff",
+                "backgroundColor": "#0072e3"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
