@@ -1,0 +1,5 @@
+ianm-url-cron:
+  admin:
+    settings:
+      php-path: "Path to PHP"
+      php-path-help: "If the correct PHP CLI version is linked to <code>php</code>, then no changes here are needed. If however you need to specify a path to the correct PHP executable, ie <code>/usr/bin/php81</code>, enter it here. This should match the PHP version used by Apache/NGINX/etc."

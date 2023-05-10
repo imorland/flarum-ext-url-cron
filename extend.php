@@ -14,6 +14,14 @@ namespace IanM\UrlCron;
 use Flarum\Extend;
 
 return [
+    (new Extend\Frontend('admin'))
+        ->js(__DIR__ . '/js/dist/admin.js'),
+
+    new Extend\Locales(__DIR__ . '/locale'),
+
     (new Extend\Routes('api'))
-        ->get('/cron/trigger', 'ianm.url-cron.trigger', Controllers\CronController::class)
+        ->get('/cron/trigger', 'ianm.url-cron.trigger', Controllers\CronController::class),
+
+    (new Extend\Settings())
+        ->default('ianm-url-cron.php-path', 'php')
 ];
