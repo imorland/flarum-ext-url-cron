@@ -6,7 +6,7 @@ jobs:
   run:
     uses: flarum/framework/.github/workflows/REUSABLE_frontend.yml@main
     with:
-      enable_bundlewatch: true
+      enable_bundlewatch: false
       enable_prettier: true
       enable_typescript: false
 
