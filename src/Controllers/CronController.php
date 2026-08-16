@@ -20,16 +20,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class CronController implements RequestHandlerInterface
 {
-    /** @var Paths */
-    public $paths;
-
-    /** @var SettingsRepositoryInterface */
-    public $settings;
-
-    public function __construct(Paths $paths, SettingsRepositoryInterface $settings)
+    public function __construct(public Paths $paths, public SettingsRepositoryInterface $settings)
     {
-        $this->paths = $paths;
-        $this->settings = $settings;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
