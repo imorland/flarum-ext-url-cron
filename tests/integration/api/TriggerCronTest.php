@@ -28,7 +28,7 @@ class TriggerCronTest extends TestCase
 
         $this->extension('ianm-url-cron');
 
-        $this->marker = $this->tmpDir().'/schedule-run-invoked';
+        $this->marker = $this->absoluteTmpDir().'/schedule-run-invoked';
 
         if (file_exists($this->marker)) {
             unlink($this->marker);
@@ -39,13 +39,23 @@ class TriggerCronTest extends TestCase
 
     protected function tearDown(): void
     {
-        foreach ([$this->marker, $this->tmpDir().'/flarum'] as $path) {
+        foreach ([$this->marker, $this->absoluteTmpDir().'/flarum'] as $path) {
             if (file_exists($path)) {
                 unlink($path);
             }
         }
 
         parent::tearDown();
+    }
+
+    /**
+     * CI sets FLARUM_TEST_TMP_DIR_LOCAL to a relative path, and the controller
+     * chdir()s before shelling out — so a relative marker path would resolve
+     * against the wrong directory. Always work with an absolute one.
+     */
+    private function absoluteTmpDir(): string
+    {
+        return realpath($this->tmpDir()) ?: $this->tmpDir();
     }
 
     /**
@@ -58,7 +68,7 @@ class TriggerCronTest extends TestCase
     {
         $marker = var_export($this->marker, true);
 
-        file_put_contents($this->tmpDir().'/flarum', <<<PHP
+        file_put_contents($this->absoluteTmpDir().'/flarum', <<<PHP
             #!/usr/bin/env php
             <?php
             file_put_contents($marker, implode(' ', array_slice(\$argv, 1)));
